@@ -4,7 +4,7 @@ Event-driven microservices-based flower ordering platform built with Spring Boot
 
 FloraFlow is a scalable event-driven flower ordering platform built using a microservices architecture with Spring Boot.
 
-The project focuses on distributed systems concepts such as asynchronous communication, Saga Choreography Pattern, Outbox Pattern, RabbitMQ messaging, and Kubernetes deployment.
+The project focuses on distributed systems concepts such as asynchronous communication, Saga Choreography Pattern, Outbox Pattern, Inbox Pattern, Circuit Breaker Pattern, RabbitMQ messaging, and Kubernetes deployment.
 
 ---
 
@@ -58,6 +58,8 @@ FloraFlow follows a distributed microservices architecture where each service ow
 - Event-Driven Architecture
 - Saga Choreography Pattern
 - Outbox Pattern
+- Inbox Pattern
+- Circuit Breaker Pattern
 - Retry Mechanism
 - Dead Letter Queue Handling
 - Redis Caching
@@ -147,20 +149,22 @@ COMPLETED
 # Reliability Patterns
 
 ## Saga Choreography Pattern
-
 Services communicate through events without a centralized orchestrator.
 
 ## Outbox Pattern
+Ensures reliable event publishing after database commit.
 
-All microservices use the Outbox Pattern to guarantee reliable event publishing.
+## Inbox Pattern
+Ensures idempotent event processing and prevents duplicate message handling.
+
+## Circuit Breaker Pattern
+Prevents cascading failures between microservices and improves system resilience.
 
 ## Retry & DLQ
-
-Failed messages are retried automatically and redirected to Dead Letter Queues when necessary.
+Failed messages are retried automatically and sent to Dead Letter Queue when necessary.
 
 ## Global Exception Handling
-
-Every service includes centralized exception handling for consistent API responses.
+Each service uses centralized exception handling for consistent API responses.
 
 ---
 
